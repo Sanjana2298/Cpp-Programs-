@@ -1,3 +1,2 @@
 # Cpp-Programs-
-Collection of all my C++ programs 
-Processing :P
+Collection of all my C++ programs
