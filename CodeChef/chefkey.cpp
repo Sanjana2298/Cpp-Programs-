@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-// check better way to do it
+// check a better way to do it
 int main(){
 	long long int t , n ,m , c ,cnt;
 	cin>>t;
