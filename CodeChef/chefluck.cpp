@@ -14,7 +14,7 @@ int main()
 
 		for(s=0;s<=n;s+=4){
 			if((n-s)%7==0){
-				cout<<s<<"\n";
+				cout<<n-s<<"\n";
 				flag=1;
 				break;
 			}
