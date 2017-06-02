@@ -93,7 +93,7 @@ int main() {
     			}
     		}
     	}
-    		cout<<min<<"\n";
+    	cout<<min<<"\n";
 	}
     return 0;
 }
