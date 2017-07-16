@@ -1,11 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define ll long long int
 
-int merge(int arr[], int s, int mid, int e) {
-	int *a = new int[mid-s+1];
-	int *b = new int[e-mid];
+ll merge(ll arr[], ll s, ll mid, ll e) {
+	ll *a = new ll[mid-s+1];
+	ll *b = new ll[e-mid];
 
-	int ic = 0, i, j, k;
+	ll ic = 0, i, j, k;
 	
 	for(i = s; i <=mid; i++)
 		a[i-s] = arr[i];
@@ -18,18 +19,14 @@ int merge(int arr[], int s, int mid, int e) {
 
 	while(i<=(mid-s) && j<=(e-(mid+1))) {
 		if(a[i] > b[j]) {
-			ic+=(i+1);
+			ic+=(mid-s-i+1);
 			arr[k++] = b[j++];
 		}
 		else 
 			arr[k++] = a[i++];
 	}
 
-	int rem = (mid-s-i);
-	if(rem>=0)
-		ic += rem*(e-mid);
-
-	while(i<=mid-s)
+	while(i<=(mid-s))
 		arr[k++] = a[i++];
 
 	while(j<=(e-(mid+1)))
@@ -38,26 +35,27 @@ int merge(int arr[], int s, int mid, int e) {
 	return ic;
 }
 
-
-void mergeSort(int a[], int s, int e, int &invCount) {
+ll mergeSort(ll a[], ll s, ll e) {
+	ll invCount = 0;
 	if(s<e) {
-		int mid = s+(e-s)/2 ;
-		mergeSort(a, s, mid, invCount);
-		mergeSort(a, mid+1, e, invCount);
-		invCount += merge(a,s,mid,e);
+		ll mid = s+(e-s)/2 ;
+		invCount += mergeSort(a, s, mid);
+		invCount += mergeSort(a, mid+1, e);
+		invCount += merge(a, s, mid, e);
 	}
+	return invCount;
 }
 
 int main() {
 
-	int arr[100], n, i ;
+	ll arr[100], n, i ;
 	cin>>n;
 
 	for(i = 0; i<n; i++) 
 		cin>>arr[i];
 
-	int ic = 0;
-	mergeSort(arr, 0, n-1, ic);
+	
+	ll ic = mergeSort(arr, 0, n-1);
 
 	cout<<"Sorted array = ";
 	for(i=0;i<n;i++) 
