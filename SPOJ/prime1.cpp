@@ -1,27 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define lli long long int
 
 int main() {
-
 	// http://www.spoj.com/problems/PRIME1/
-	long long int m,n,i,k;
-	int t, a[1000000000] = {0};
+
+	int t;
+
+	lli m, n, i, j;
+
+
 	cin>>t;
-	for(i=2; i<=1000000000; i++) {
-		if(a[i]==0) {
-			a[i] = -1;
-			for(k = 2*i; k<=1000000000; k+=i) {
-				a[k]=1;
-			}
-		}
-	}
 
 	while(t--) {
 		cin>>m>>n;
+
 		for(i=m; i<=n; i++) {
-			if(a[i] == -1)
+			int f = 1;
+			lli sq = sqrt(i);
+			for(j=2; j<=sq; j++) {
+				if(i%j == 0) {
+					f = 0;
+					break;
+				}
+
+			}
+
+			if(f && i!= 1)
 				cout<<i<<"\n";
 		}
+
+		cout<<"\n";
 	}
 	return 0;
 }

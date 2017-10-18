@@ -24,6 +24,5 @@ int main() {
 		cout<<min(cnt1,cnt2)<<"\n";
 	}
 
-
 	return 0;
 }
