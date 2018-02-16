@@ -8,12 +8,12 @@ lli fast_power(lli base, lli power) {
     while(power > 0) {
 
         if(power & 1) { 
-            result = (result*base) % mod;
+            result = ((result%mod)*(base%mod)) % mod;
         }
-        base = (base * base)% mod;
+        base = (base%mod * base%mod)% mod;
         power >>= 1;
     }
-    return result-base;
+    return result;
 }
 
 lli func(lli x, lli n) {
@@ -32,26 +32,14 @@ lli func(lli x, lli n) {
 
     return ans;
 }
-lli funcc(lli x, lli y) {
-	// lli ans = 1, i ;
-	// for(i=1; i<=n+1; i++) {
-	// 	ans = ((ans)*(x))%mod;
-	// }
-	// cout<<ans<<"*\n";
-	// ans-=x;
-	// ans/=(x-1);
-	// return ans%mod;
-	
-}
 
 int main() {
 	// http://www.spoj.com/problems/UCV2013A/
 
 	lli x, n;
-
 	cin>>x>>n;
 	while(x!=0 && n!=0) {
-		lli ans = func(x,n+1);
+		lli ans = fast_power(x,n+1);
 
 		cout<<ans<<"\n";
 		cin>>x>>n;
